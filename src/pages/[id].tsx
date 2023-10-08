@@ -1,26 +1,18 @@
 import { getCharacters } from "@/redux/features/charactersSlice"
-// import { getCurrentCharacter, setCurrentCharacter } from "@/redux/features/currentSlice"
 import {
   getCurrentCharacter,
   setCurrentCharacter,
 } from "../redux/features/currentSlice"
-import { useRouter } from "next/router"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import serverSearchParams from "../lib/serverSearchParams"
 import axios from "axios"
+import Detail from "@/components/Characters/Detail"
 
 const page = (data: any) => {
-  const router = useRouter()
   const dispatch = useDispatch()
   dispatch(setCurrentCharacter(data?.data?.data?.results[0]))
-  const current: any = useSelector(getCurrentCharacter)
-  console.log(current)
-  return (
-    <>
-      <div>detail page</div>
-      <div>{current.current.name}</div>
-    </>
-  )
+
+  return <Detail />
 }
 
 export default page

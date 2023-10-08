@@ -1,29 +1,25 @@
 import { Inter } from "next/font/google"
-import styles from "@/styles/Home.module.css"
-import { getCharacters, setCharacters } from "@/redux/features/charactersSlice"
-import { useDispatch, useSelector } from "react-redux"
-
+import { setCharacters } from "@/redux/features/charactersSlice"
+import { useDispatch } from "react-redux"
 import axios from "axios"
-import Link from "next/link"
 import serverSearchParams from "../lib/serverSearchParams"
+import Head from "next/head"
+import Characters from "../components/Characters/Index"
+import Navbar from "../components/Navbar"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home(data: any) {
   const dispatch = useDispatch()
-
   dispatch(setCharacters(data?.data?.data?.results))
-  const characters: any = useSelector(getCharacters)
 
   return (
     <>
-      <main className={`${styles.main} ${inter.className}`}>
-        {characters?.characters.map((i: any) => (
-          <Link href={`/${i.id}`}>
-            <div>{i.name}</div>
-          </Link>
-        ))}
-      </main>
+      <Head>
+        <title>MarvelApi</title>
+      </Head>
+      <Navbar />
+      <Characters />
     </>
   )
 }
