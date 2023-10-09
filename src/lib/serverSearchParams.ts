@@ -8,7 +8,7 @@ const createServerAuthSearchParams = () => {
   const hash = md5(`${ts}${privateKey}${publicKey}`)
 
   const endpoint = `ts=${ts}&apikey=${publicKey}&hash=${hash}`
-
-  return endpoint
+  const baseUrl = `http://gateway.marvel.com/v1/public/characters`
+  return { baseUrl, endpoint }
 }
 export default createServerAuthSearchParams

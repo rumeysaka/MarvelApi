@@ -12,7 +12,7 @@ function Index() {
       </h2>
       <div className="d-flex flex-wrap justify-content-center align-items-center mx-10">
         {characters?.characters.map((item: any) => (
-          <CardItem i={item} />
+          <CardItem key={item.id} i={item} />
         ))}
       </div>
     </div>

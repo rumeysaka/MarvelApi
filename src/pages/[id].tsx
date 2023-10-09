@@ -18,16 +18,15 @@ const page = (data: any) => {
 export default page
 
 export async function getServerSideProps(context: any) {
-  const endpoint = serverSearchParams()
+  const { baseUrl, endpoint } = serverSearchParams()
   const charId = context.query
   let ID = charId.id
 
-  const { data } = await axios.get(
-    `http://gateway.marvel.com/v1/public/characters/${ID}?${endpoint}`
-  )
+  const { data } = await axios.get(`${baseUrl}/${ID}?${endpoint}`)
   return {
     props: {
       data,
     },
   }
 }
+;[]
