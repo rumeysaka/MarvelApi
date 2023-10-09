@@ -4,7 +4,7 @@ import {
   setCurrentCharacter,
 } from "../redux/features/currentSlice"
 import { useDispatch } from "react-redux"
-import serverSearchParams from "../lib/serverSearchParams"
+import serverRequestParams from "../lib/serverRequestParams"
 import axios from "axios"
 import Detail from "@/components/Characters/Detail"
 
@@ -18,7 +18,7 @@ const page = (data: any) => {
 export default page
 
 export async function getServerSideProps(context: any) {
-  const { baseUrl, endpoint } = serverSearchParams()
+  const { baseUrl, endpoint } = serverRequestParams()
   const charId = context.query
   let ID = charId.id
 

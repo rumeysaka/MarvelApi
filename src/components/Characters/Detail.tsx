@@ -2,18 +2,11 @@ import { useSelector } from "react-redux"
 import { getCurrentCharacter } from "@/redux/features/currentSlice"
 import Image from "next/image"
 import { useState } from "react"
-import serverSearchParams from "../../lib/serverSearchParams"
 import { useEffect } from "react"
 import axios from "axios"
 
 const Detail = () => {
   let current: any = useSelector(getCurrentCharacter)
-  const { baseUrl, endpoint } = serverSearchParams()
-
-  const callResource = (i) => {
-    const data = axios.get(`${i.resourceURI}?${endpoint}`)
-    console.log(data)
-  }
 
   current = current.current
   return (
@@ -23,15 +16,18 @@ const Detail = () => {
       </h2>
       <div className="d-flex justify-content-center align-content-center">
         <div className="card d-flex shadow-lg" style={{ width: "800px" }}>
-          <h5 className="card-header">Marvel Character</h5>
-          <div className="d-flex justify-content-center align-content-center">
+          <h5 className="card-header text-center shadow-sm ">
+            Marvel Character
+          </h5>
+          <div className="d-flex justify-content-center align-content-center py-5">
             <img
+              className="shadow rounded"
               src={`${current?.thumbnail.path}.${current?.thumbnail.extension}`}
               alt="..."
               style={{ width: "500px", height: "500px" }}
             />
           </div>
-          <div className="px-4 pt-4">
+          <div className="px-4 pb-1 text-center">
             <p className="card-text">{current.description}</p>
           </div>
 
@@ -74,9 +70,7 @@ const Detail = () => {
                   >
                     <div class="accordion-body">
                       {current?.comics?.items?.map((i: any) => (
-                        <a onClick={() => callResource(i)}>
-                          <p>{i.name}</p>
-                        </a>
+                        <p>{i.name}</p>
                       ))}
                     </div>
                   </div>

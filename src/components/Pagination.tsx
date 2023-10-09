@@ -1,30 +1,34 @@
 import { Link } from "next/link"
-import { useRouter } from "next/router"
-import serverSearchParams from "../lib/serverSearchParams"
+import serverRequestParams from "../lib/serverRequestParams"
 import axios from "axios"
 import { useEffect } from "react"
 
-const Pagination = () => {
-  const router = useRouter()
+const Pagination = (currPage: Object) => {
+  let page = Number(currPage.page)
   const n = 20
+
   return (
     <div className="d-flex justify-content-center pt-5">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+            <a
+              class="page-link"
+              href={`?page=${page - 1}`}
+              aria-label="Previous"
+            >
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
           {[...Array(n)].map((e, i) => (
             <li class="page-item">
-              <a class="page-link" href={`?page=${i+1}`}>
-                {i+1}
+              <a class="page-link" href={`?page=${i + 1}`}>
+                {i + 1}
               </a>
             </li>
           ))}
           <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+            <a class="page-link" href={`?page=${page + 1}`} aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>

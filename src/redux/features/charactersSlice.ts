@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { AppState } from "../store"
 
-// ## CartState Interface
 export interface characterState {
   characters: Object
 }
 
-// ## Define the initial state of Cart State
 const initialState: characterState = {
   characters: {},
 }
